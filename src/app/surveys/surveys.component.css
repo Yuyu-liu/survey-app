@@ -1,0 +1,29 @@
+.categories {
+  margin-left: 20px;
+  margin-bottom: 0;
+}
+
+.description {
+  margin-left: 20px;
+}
+
+.survey-card {
+  width: 400px;
+  margin: 20px;
+  min-height: 140px;
+  max-height: 140px;
+}
+
+.divider {
+  margin-left: 20px;
+}
+
+.cards-container {
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.start-survey-button {
+  float: right;
+}

@@ -1,0 +1,22 @@
+.menu-bar {
+  padding-bottom: 0.5%;
+  padding-top: 0.5%;
+  padding-right: 5%;
+  background-color: #336699;
+  border-radius: 0;
+  text-align: right;
+  margin-bottom: 30px;
+}
+
+.menu-buttons {
+  border-radius: 0;
+}
+
+.active {
+  border-bottom: solid 2px #E3F2FD;
+}
+
+.logo-image {
+  float: left;
+  margin-left: 3%;
+}
