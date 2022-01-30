@@ -1,0 +1,94 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@include mat-core();
+
+$mat-appBlue: (
+  50 : #e5e9eb,
+  100 : #bdc7cd,
+  200 : #91a2ab,
+  300 : #E3F2FD,
+  400 : #4a6f99,
+  500 : #336699,
+  600 : #236597,
+  700 : #13679c,
+  800 : #01537b,
+  900 : #0c1f2c,
+  A100 : #69bdff,
+  A200 : #36a6ff,
+  A400 : #0390ff,
+  A700 : #0082e8,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$mat-appPink: (
+  50 : #e5e9eb,
+  100 : #bdc7cd,
+  200 : #dcb1b3,
+  300 : #D89A9E,
+  400 : #aa676b,
+  500 : #ac5358,
+  600 : #8d3d74,
+  700 : #48233C,
+  800 : #01537b,
+  900 : #0c1f2c,
+  A100 : #69bdff,
+  A200 : #36a6ff,
+  A400 : #0390ff,
+  A700 : #0082e8,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$my-app-primary: mat-palette($mat-appBlue, 500, 300, 700);
+$my-app-accent: mat-palette($mat-appPink, 300, 200, 700);
+$my-app-warn:    mat-palette($mat-red, 500);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.light-blue {
+  color: #E3F2FD;
+}
+
+.blue {
+  color: #336699;
+}
+
+.pink {
+  color: #D89A9E;
+}
+
+.purple {
+  color: #48233C;
+}

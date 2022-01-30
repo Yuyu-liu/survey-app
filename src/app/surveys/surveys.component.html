@@ -14,7 +14,7 @@
          <span *ngIf="card.prizes.length > 1 && isNotLastIndex(card,prize)">, </span>
        </span>
      </div>
-     <button mat-stroked-button class="start-survey-button pink">Start survey</button>
+     <button mat-stroked-button class="start-survey-button pink" (click)="startSurvey()" [disabled]="card.title != 'Morning routine'">Start survey</button>
     </mat-card>
     </div>
   </div>
