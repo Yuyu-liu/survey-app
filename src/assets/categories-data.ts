@@ -1,6 +1,6 @@
-import {Categorie} from '../app/models/categorie';
+import {Category} from '../app/models/category';
 
-const CategoriesData: Categorie[] = [
+const CategoriesData: Category[] = [
   {
     category: 'Lifestyle',
     description: 'Everyday life'

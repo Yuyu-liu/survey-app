@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Card} from '../models/card';
-import {Categorie} from '../models/categorie';
-import {CategoriesData} from '../../assets/categories-data';
-import {CardsData} from '../../assets/cards-data';
-import {Router} from '@angular/router';
+import { Card } from '../models/card';
+import { Category } from '../models/category';
+import { CategoriesData } from '../../assets/categories-data';
+import { CardsData } from '../../assets/cards-data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-surveys',
@@ -13,7 +13,7 @@ import {Router} from '@angular/router';
 export class SurveysComponent implements OnInit {
 
   cards: Card[] = [];
-  categories: Categorie[] = [];
+  categories: Category[] = [];
 
   constructor(private router: Router) { }
 

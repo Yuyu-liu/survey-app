@@ -6,17 +6,19 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { MaterialModule } from './modules/material.module';
-import { ProfileComponent } from './profile/profile.component';
+import { LoginComponent } from './login/login.component';
 import { SurveyComponent } from './survey/survey.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuBarComponent,
-    ProfileComponent,
+    LoginComponent,
     SurveyComponent,
+    SignUpComponent
   ],
     imports: [
         BrowserModule,

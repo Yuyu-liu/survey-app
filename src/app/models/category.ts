@@ -1,4 +1,4 @@
-export interface Categorie {
+export interface Category {
   category: string;
   description: string;
 }

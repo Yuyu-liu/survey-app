@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {SelectionChange} from '@angular/cdk/collections';
-import {MatCheckboxChange} from '@angular/material/checkbox';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-survey',
@@ -15,7 +14,7 @@ export class SurveyComponent implements OnInit {
   options: string[] = ['Yes', 'No', 'Sometimes'];
 
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -38,7 +37,7 @@ export class SurveyComponent implements OnInit {
   }
 
   submitForms(): void {
-
+    this.router.navigateByUrl('/surveys');
   }
 
 }
