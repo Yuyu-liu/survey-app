@@ -1,6 +1,6 @@
 <mat-card class="menu-bar light-blue">
   <img class="logo-image" src="assets/logo.png" alt="logo">
-  <button mat-button routerLink="/">
+  <button mat-button (click)="navigateHome()">
     <mat-icon class="material-icons-round">home</mat-icon>
     <span>Home</span>
   </button>
@@ -11,7 +11,7 @@
   </button>
   </ng-container>
   <ng-template #elseBlock>
-    <button mat-button routerLink="/login">
+    <button mat-button (click)="navigateLogin()">
       <mat-icon class="material-icons-round">lock</mat-icon>
       <span>Log in</span>
     </button>

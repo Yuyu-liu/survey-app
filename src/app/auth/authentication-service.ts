@@ -22,7 +22,6 @@ export class AuthenticationService {
       password
     };
     this.user.next(email);
-    localStorage.setItem('userInfo', body.email);
     return this.httpClient.post<UserResponse>(`${environment.user}/login`, body);
   }
 
@@ -32,7 +31,6 @@ export class AuthenticationService {
       password
     };
     this.user.next(email);
-    localStorage.setItem('userInfo', body.email);
     return this.httpClient.post<UserResponse>(`${environment.user}/signUp`, body );
   }
 
@@ -55,6 +53,7 @@ export class AuthenticationService {
       this.user.next(null);
       return;
     }
+    this.isAuthenticated = true;
     this.user.next(userInfo);
   }
 }

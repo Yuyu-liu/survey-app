@@ -21,7 +21,7 @@ export class SignUpComponent implements OnInit {
 
   buildSignUpForm(): FormGroup {
     return new FormGroup({
-      email: new FormControl(undefined, [Validators.required]),
+      email: new FormControl(undefined, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
       password: new FormControl(undefined, [Validators.required]),
     });
   }
@@ -32,6 +32,7 @@ export class SignUpComponent implements OnInit {
           setCookie('token', userResponse.token);
           setCookie('userId', userResponse.userId);
           this.authenticationService.isAuthenticated = true;
+          localStorage.setItem('userInfo', this.signUpForm.get('email')?.value);
         });
     this.router.navigateByUrl('/home');
   }

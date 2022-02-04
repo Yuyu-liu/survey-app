@@ -3,7 +3,8 @@
   <mat-form-field appearance="fill" class="input">
     <mat-label>Email</mat-label>
     <input matInput required autocomplete="off" formControlName="email" type="email">
-    <mat-error>Email is required</mat-error>
+    <mat-error *ngIf="loginForm.controls['email'].errors?.required">Email is required</mat-error>
+    <mat-error *ngIf="loginForm.controls['email'].errors?.pattern">Wrong email format</mat-error>
   </mat-form-field>
   <mat-form-field appearance="fill" class="input">
     <mat-label>Password</mat-label>
