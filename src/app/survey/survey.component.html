@@ -1,0 +1,70 @@
+<mat-horizontal-stepper linear="true">
+  <mat-step [stepControl]="informationForm">
+    <form [formGroup]="informationForm" class="form-container">
+      <ng-template matStepLabel>Personal information</ng-template>
+      <mat-form-field appearance="fill" class="input">
+        <mat-label>Last name</mat-label>
+        <input matInput formControlName="lastName" required autocomplete="off">
+        <mat-error>Last name is required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="input">
+        <mat-label>First name</mat-label>
+        <input matInput formControlName="firstName" required autocomplete="off">
+        <mat-error>First name is required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="input">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" required autocomplete="off">
+        <mat-error *ngIf="informationForm.controls['email'].errors?.required">Email is required</mat-error>
+        <mat-error *ngIf="informationForm.controls['email'].errors?.pattern">Wrong email format</mat-error>
+      </mat-form-field>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="questionsForm">
+    <form [formGroup]="questionsForm" class="form-container">
+      <ng-template matStepLabel>Questions</ng-template>
+      <div class="question">What time do you usually wake up ?</div>
+      <mat-form-field appearance="fill" style="width: 10%; margin-top: 15px">
+        <input id="input-time"
+               matInput
+               type="time"
+               formControlName="timeWakeUp">
+        <mat-error>Answer is required</mat-error>
+      </mat-form-field>
+      <div class="question">What is the first thing you do upon waking up ?</div>
+      <mat-form-field appearance="fill" class="input">
+        <input matInput formControlName="actionWakeUp" autocomplete="off">
+        <mat-error>Answer is required</mat-error>
+      </mat-form-field>
+      <div class="question">Do you have a big breakfast ?</div>
+      <mat-form-field appearance="fill" class="input">
+        <mat-select formControlName="bigBreakfast">
+          <mat-option *ngFor="let option of options " [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-select>
+        <mat-error>Answer is required</mat-error>
+      </mat-form-field>
+      <div class="question">Are you a morning person ?</div>
+      <mat-form-field appearance="fill" class="input">
+        <mat-select formControlName="morningPerson" required>
+          <mat-option *ngFor="let option of options" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-select>
+        <mat-error>Answer is required</mat-error>
+      </mat-form-field>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <mat-form-field appearance="fill" class="input">
+      <mat-label>Leave a comment about the survey (optional)</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+    <div class="submit-button">
+      <button mat-raised-button color="accent" (click)="submitForms()">Submit</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+

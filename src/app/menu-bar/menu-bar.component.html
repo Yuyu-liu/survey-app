@@ -1,0 +1,21 @@
+<mat-card class="menu-bar light-blue">
+  <img class="logo-image" src="assets/logo.png" alt="logo">
+  <button mat-button (click)="navigateHome()">
+    <mat-icon class="material-icons-round">home</mat-icon>
+    <span>Home</span>
+  </button>
+  <ng-container *ngIf="authenticationService.isAuthenticated; else elseBlock">
+  <button mat-button (click)="logOut()">
+    <mat-icon class="material-icons-round">logout</mat-icon>
+    <span>Log out</span>
+  </button>
+  </ng-container>
+  <ng-template #elseBlock>
+    <button mat-button (click)="navigateLogin()">
+      <mat-icon class="material-icons-round">lock</mat-icon>
+      <span>Log in</span>
+    </button>
+  </ng-template>
+</mat-card>
+
+

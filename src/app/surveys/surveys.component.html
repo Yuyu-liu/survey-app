@@ -1,0 +1,20 @@
+<div *ngFor="let category of categories">
+  <h1 class="categories blue">{{category.category}}</h1>
+  <h4 class="description pink">{{category.description}}</h4>
+  <mat-divider class="divider"></mat-divider>
+  <div class="cards-container">
+    <div *ngFor="let card of cards">
+    <mat-card class="survey-card" *ngIf="card.type == category.category">
+     <mat-card-title>{{card.title}}</mat-card-title>
+     <mat-card-subtitle>{{card.description}}</mat-card-subtitle>
+     <div>Reward(s):
+       <span *ngFor="let prize of card.prizes">
+         {{prize}}
+         <span *ngIf="card.prizes.length > 1 && isNotLastIndex(card,prize)">, </span>
+       </span>
+     </div>
+     <button mat-stroked-button class="start-survey-button pink" (click)="startSurvey()" [disabled]="card.title != 'Morning routine'">Start survey</button>
+    </mat-card>
+    </div>
+  </div>
+</div>
