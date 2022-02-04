@@ -39,5 +39,4 @@ export class SurveyComponent implements OnInit {
   submitForms(): void {
     this.router.navigateByUrl('/surveys');
   }
-
 }

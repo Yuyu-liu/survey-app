@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./surveys.component.scss']
 })
 export class SurveysComponent implements OnInit {
-
+  numberSurveyCompleted = 0;
   cards: Card[] = [];
   categories: Category[] = [];
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../auth/authentication-service';
 
 @Component({
   selector: 'app-menu-bar',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authenticationService: AuthenticationService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  logOut(): void {
+    this.authenticationService.logout();
   }
-
 }

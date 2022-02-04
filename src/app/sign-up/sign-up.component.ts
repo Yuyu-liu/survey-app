@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationService } from '../auth/authentication-service';
+import { Router } from '@angular/router';
+import { setCookie } from '../../assets/cookies-util';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,17 +13,26 @@ export class SignUpComponent implements OnInit {
 
   signUpForm: FormGroup = this.buildSignUpForm();
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
 
   buildSignUpForm(): FormGroup {
     return new FormGroup({
-      firstName: new FormControl(undefined, [Validators.required]),
-      lastName: new FormControl(undefined, [Validators.required]),
       email: new FormControl(undefined, [Validators.required]),
       password: new FormControl(undefined, [Validators.required]),
     });
+  }
+
+  signUp(): void {
+    this.authenticationService.signup(this.signUpForm.get('email')?.value, this.signUpForm.get('password')?.value)
+        .subscribe(userResponse => {
+          setCookie('token', userResponse.token);
+          setCookie('userId', userResponse.userId);
+          this.authenticationService.isAuthenticated = true;
+        });
+    this.router.navigateByUrl('/home');
   }
 }

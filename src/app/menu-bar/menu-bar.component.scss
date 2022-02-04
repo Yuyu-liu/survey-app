@@ -6,13 +6,14 @@
   border-radius: 0;
   text-align: right;
   margin-bottom: 30px;
+  min-height: 35px;
 }
 
 .menu-buttons {
   border-radius: 0;
 }
 
-.active {
+.active  {
   border-bottom: solid 2px #E3F2FD;
 }
 

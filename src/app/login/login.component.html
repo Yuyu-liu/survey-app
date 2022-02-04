@@ -12,6 +12,6 @@
   </mat-form-field>
 </form>
 <div class="button-container">
-  <button mat-raised-button color="accent" class="login-button">Login</button>
-  <div>or <a [routerLink]="['/signUp']" routerLinkActive="active" class="sign-up">sign up</a></div>
+  <button mat-raised-button color="accent" class="login-button" (click)="login()">Login</button>
+  <div>Don't have an account ? <a [routerLink]="['/signUp']" routerLinkActive="active" class="sign-up">Sign up</a></div>
 </div>
