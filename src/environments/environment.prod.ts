@@ -1,4 +1,4 @@
-const API_URL = 'https://' + window.location.hostname + '/api';
+const API_URL = 'https://evening-spire-81197.herokuapp.com';
 export const environment = {
   production: true,
 
