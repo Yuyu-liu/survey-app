@@ -34,9 +34,9 @@ export class LoginComponent implements OnInit {
         this.authenticationService.isAuthenticated = true;
         setCookie('token', userResponse.token);
         setCookie('userId', userResponse.userId);
-        localStorage.setItem('userInfo', this.loginForm.get('email')?.value);
         this.router.navigateByUrl('/');
       }, () => {
+        localStorage.removeItem('token');
         this.snackBar.open('Authentication failed', '', {duration: 3000});
       });
   }

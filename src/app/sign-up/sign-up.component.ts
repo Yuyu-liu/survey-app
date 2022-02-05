@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../auth/authentication-service';
 import { Router } from '@angular/router';
 import { setCookie } from '../../assets/cookies-util';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,7 +15,8 @@ export class SignUpComponent implements OnInit {
   signUpForm: FormGroup = this.buildSignUpForm();
 
   constructor(private authenticationService: AuthenticationService,
-              private router: Router) { }
+              private router: Router,
+              private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -32,8 +34,10 @@ export class SignUpComponent implements OnInit {
           setCookie('token', userResponse.token);
           setCookie('userId', userResponse.userId);
           this.authenticationService.isAuthenticated = true;
-          localStorage.setItem('userInfo', this.signUpForm.get('email')?.value);
+          this.router.navigateByUrl('/');
+        }, () => {
+          localStorage.removeItem('token');
+          this.snackbar.open('Sign up failed', '', {duration: 3000});
         });
-    this.router.navigateByUrl('/home');
   }
 }
