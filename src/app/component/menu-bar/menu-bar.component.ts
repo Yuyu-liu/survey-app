@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../auth/authentication-service';
+import { AuthenticationService } from '../../auth/authentication-service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,5 +24,9 @@ export class MenuBarComponent implements OnInit {
 
   navigateHome(): void {
     this.router.navigateByUrl('/');
+  }
+
+  navigateProfile(): void {
+    this.router.navigateByUrl('/profile');
   }
 }

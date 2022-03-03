@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from '../auth/authentication-service';
+import { AuthenticationService } from '../../auth/authentication-service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { setCookie } from '../../assets/cookies-util';
+import { setCookie } from '../../../assets/cookies-util';
 
 @Component({
   selector: 'app-profile',
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/');
       }, () => {
         localStorage.removeItem('token');
-        this.snackBar.open('Authentication failed', '', {duration: 3000});
+        this.snackBar.open('Authentication failed', '', {duration: 3000, panelClass: ['snackbar']});
       });
   }
 }

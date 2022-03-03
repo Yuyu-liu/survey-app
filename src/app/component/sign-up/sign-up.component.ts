@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from '../auth/authentication-service';
+import { AuthenticationService } from '../../auth/authentication-service';
 import { Router } from '@angular/router';
-import { setCookie } from '../../assets/cookies-util';
+import { setCookie } from '../../../assets/cookies-util';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
@@ -24,7 +24,7 @@ export class SignUpComponent implements OnInit {
   buildSignUpForm(): FormGroup {
     return new FormGroup({
       email: new FormControl(undefined, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
-      password: new FormControl(undefined, [Validators.required]),
+      password: new FormControl(undefined, [Validators.required, Validators.minLength(8), Validators.pattern('[^a-zA-Z0-9]') ]),
     });
   }
 
@@ -37,7 +37,7 @@ export class SignUpComponent implements OnInit {
           this.router.navigateByUrl('/');
         }, () => {
           localStorage.removeItem('token');
-          this.snackbar.open('Sign up failed', '', {duration: 3000});
+          this.snackbar.open('Sign up failed', '', {duration: 3000, panelClass: ['snackbar']});
         });
   }
 }

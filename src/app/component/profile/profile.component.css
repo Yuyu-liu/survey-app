@@ -1,0 +1,27 @@
+.title {
+  text-align: center;
+}
+
+.section {
+  margin-left: 20px;
+}
+
+.user-container {
+  padding: 1%;
+  margin: 0 20px 0 20px;
+  border: 1px rgba(191, 191, 191, 0.58) solid;
+}
+
+.info {
+  margin: 20px;
+}
+
+.password-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.button-show {
+  height: 40px;
+}

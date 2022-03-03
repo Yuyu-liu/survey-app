@@ -1,6 +1,7 @@
 # SurveyApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.7.
+Before running the app run `npm install` to install the node modules.
 
 ## Development server
 

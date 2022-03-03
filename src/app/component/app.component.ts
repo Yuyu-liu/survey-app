@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from './auth/authentication-service';
-import { getCookie } from '../assets/cookies-util';
+import { AuthenticationService } from '../auth/authentication-service';
+import { getCookie } from '../../assets/cookies-util';
 
 @Component({
   selector: 'app-root',
