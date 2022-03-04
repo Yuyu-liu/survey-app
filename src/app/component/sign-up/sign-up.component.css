@@ -22,3 +22,10 @@
   width: 50%;
 }
 
+.captcha {
+  display: inline-block;
+}
+
+.captcha-container {
+  text-align: center;
+}

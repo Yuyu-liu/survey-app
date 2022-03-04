@@ -4,4 +4,8 @@ export const environment = {
 
   user: API_URL + '/users',
   token: API_URL + '/token',
+
+  recaptcha: {
+    siteKey: '6LcRqLEeAAAAAPjvfJO2WkltEsgS5VB_O8flh2Yl',
+  },
 };

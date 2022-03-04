@@ -12,6 +12,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class SignUpComponent implements OnInit {
 
+  token: string|undefined;
   signUpForm: FormGroup = this.buildSignUpForm();
 
   constructor(private authenticationService: AuthenticationService,
@@ -24,7 +25,7 @@ export class SignUpComponent implements OnInit {
   buildSignUpForm(): FormGroup {
     return new FormGroup({
       email: new FormControl(undefined, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
-      password: new FormControl(undefined, [Validators.required, Validators.minLength(8), Validators.pattern('[^a-zA-Z0-9]') ]),
+      password: new FormControl(undefined, [Validators.required, Validators.minLength(8) ]),
     });
   }
 

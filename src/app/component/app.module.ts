@@ -13,6 +13,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginGuard } from '../auth/login.guard';
 import { ProfileComponent } from './profile/profile.component';
+import {RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings} from 'ng-recaptcha';
+import {environment} from '../../environments/environment';
 
 @NgModule({
   declarations: [
@@ -31,8 +33,18 @@ import { ProfileComponent } from './profile/profile.component';
         ReactiveFormsModule,
         FormsModule,
         HttpClientModule,
+        RecaptchaModule,
+        RecaptchaFormsModule,
     ],
-  providers: [LoginGuard],
+  providers: [
+    LoginGuard,
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: environment.recaptcha.siteKey,
+      } as RecaptchaSettings,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
