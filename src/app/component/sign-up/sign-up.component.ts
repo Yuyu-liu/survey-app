@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../auth/authentication-service';
 import { Router } from '@angular/router';
 import { setCookie } from '../../../assets/cookies-util';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {UserService} from '../../service/user.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,7 +18,8 @@ export class SignUpComponent implements OnInit {
 
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
-              private snackbar: MatSnackBar) { }
+              private snackbar: MatSnackBar,
+              private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -30,15 +32,20 @@ export class SignUpComponent implements OnInit {
   }
 
   signUp(): void {
-    this.authenticationService.signup(this.signUpForm.get('email')?.value, this.signUpForm.get('password')?.value)
+    this.userService.getUser(this.signUpForm.get('email')?.value).subscribe(() => {
+      this.snackbar.open('User already taken', '', {duration: 3000, panelClass: ['snackbar']});
+      this.signUpForm.get('password')?.setValue('');
+    }, () => {
+      this.authenticationService.signup(this.signUpForm.get('email')?.value, this.signUpForm.get('password')?.value)
         .subscribe(userResponse => {
           setCookie('token', userResponse.token);
           setCookie('userId', userResponse.userId);
           this.authenticationService.isAuthenticated = true;
           this.router.navigateByUrl('/');
         }, () => {
-          localStorage.removeItem('token');
+          localStorage.removeItem('userInfo');
           this.snackbar.open('Sign up failed', '', {duration: 3000, panelClass: ['snackbar']});
         });
+    });
   }
 }

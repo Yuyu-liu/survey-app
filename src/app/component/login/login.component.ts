@@ -12,8 +12,7 @@ import { setCookie } from '../../../assets/cookies-util';
 })
 export class LoginComponent implements OnInit {
 
-  token: string|undefined;
-  captchaChecked = false;
+  token?: string;
   loginForm: FormGroup = this.buildLoginForm();
 
   constructor(private authenticationService: AuthenticationService,
@@ -32,22 +31,16 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    console.log(this.token);
-    // this.authenticationService.login(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value)
-    //   .subscribe(userResponse => {
-    //     this.authenticationService.isAuthenticated = true;
-    //     setCookie('token', userResponse.token);
-    //     setCookie('userId', userResponse.userId);
-    //     this.router.navigateByUrl('/');
-    //   }, () => {
-    //     localStorage.removeItem('token');
-    //     this.snackBar.open('Authentication failed', '', {duration: 3000, panelClass: ['snackbar']});
-    //   });
-  }
-
-  callback(): void {
-    console.log('here');
-
-    this.captchaChecked = true;
+    this.authenticationService.login(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value)
+      .subscribe(userResponse => {
+        this.authenticationService.isAuthenticated = true;
+        setCookie('token', userResponse.token);
+        setCookie('userId', userResponse.userId);
+        this.router.navigateByUrl('/');
+      }, () => {
+        localStorage.removeItem('userInfo');
+        this.snackBar.open('Authentication failed', '', {duration: 3000, panelClass: ['snackbar']});
+        this.loginForm.get('password')?.setValue('');
+      });
   }
 }

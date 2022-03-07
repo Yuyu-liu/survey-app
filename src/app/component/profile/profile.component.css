@@ -15,13 +15,3 @@
 .info {
   margin: 20px;
 }
-
-.password-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.button-show {
-  height: 40px;
-}

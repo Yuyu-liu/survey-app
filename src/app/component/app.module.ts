@@ -10,11 +10,12 @@ import { LoginComponent } from './login/login.component';
 import { SurveyComponent } from './survey/survey.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule, HttpXsrfTokenExtractor} from '@angular/common/http';
 import { LoginGuard } from '../auth/login.guard';
 import { ProfileComponent } from './profile/profile.component';
 import {RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings} from 'ng-recaptcha';
 import {environment} from '../../environments/environment';
+import {CustomInterceptor} from '../auth/custom-interceptor';
 
 @NgModule({
   declarations: [
@@ -25,17 +26,18 @@ import {environment} from '../../environments/environment';
     SignUpComponent,
     ProfileComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MaterialModule,
-        ReactiveFormsModule,
-        FormsModule,
-        HttpClientModule,
-        RecaptchaModule,
-        RecaptchaFormsModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
+    HttpClientXsrfModule,
+  ],
   providers: [
     LoginGuard,
     {
@@ -43,6 +45,12 @@ import {environment} from '../../environments/environment';
       useValue: {
         siteKey: environment.recaptcha.siteKey,
       } as RecaptchaSettings,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CustomInterceptor,
+      deps: [HttpXsrfTokenExtractor],
+      multi: true
     },
   ],
   bootstrap: [AppComponent]

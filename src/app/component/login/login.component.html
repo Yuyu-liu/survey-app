@@ -13,10 +13,7 @@
   </mat-form-field>
 </form>
 <div class="captcha-container">
-  <re-captcha class="captcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token" required data-callback="callback"></re-captcha>
-  <div *ngIf="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)">
-    <div *ngIf="recaptcha.errors?.required">This field is required.</div>
-  </div>
+  <re-captcha class="captcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
 </div>
 <div class="button-container">
   <button mat-raised-button color="accent" class="login-button" (click)="login()" [disabled]="token === undefined || loginForm.invalid">Login</button>

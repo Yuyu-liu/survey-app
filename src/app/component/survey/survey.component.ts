@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-survey',
@@ -9,12 +10,13 @@ import { Router } from '@angular/router';
 })
 export class SurveyComponent implements OnInit {
 
+  token?: string;
   informationForm: FormGroup = this.buildInformationForm();
   questionsForm: FormGroup = this.buildQuestionsForm();
   options: string[] = ['Yes', 'No', 'Sometimes'];
 
-
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -37,6 +39,7 @@ export class SurveyComponent implements OnInit {
   }
 
   submitForms(): void {
-    this.router.navigateByUrl('/surveys');
+    this.snackbar.open('Survey completed', '', {duration: 3000, panelClass: ['snackbar']});
+    this.router.navigateByUrl('/');
   }
 }

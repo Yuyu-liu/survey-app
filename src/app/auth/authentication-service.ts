@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { environment } from '../../environments/environment';
 import { UserResponse } from '../models/userResponse';
 import { Router } from '@angular/router';
 import { UserRequest } from '../models/userRequest';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { deleteCookie, getCookie } from '../../assets/cookies-util';
+import { deleteCookie } from '../../assets/cookies-util';
+import {UserService} from '../service/user.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  isAuthenticated = false;
-  user = new BehaviorSubject<any>(null);
 
   constructor(private httpClient: HttpClient,
-              private router: Router) {}
+              private router: Router,
+              private userService: UserService) {}
+  isAuthenticated = false;
+  user = new BehaviorSubject<any>(null);
 
   login(email: string, password: string): Observable<UserResponse> {
     const body: UserRequest = {
@@ -23,7 +24,7 @@ export class AuthenticationService {
     };
     this.user.next(email);
     localStorage.setItem('userInfo', body.email);
-    return this.httpClient.post<UserResponse>(`${environment.user}/login`, body);
+    return this.userService.login(body);
   }
 
   signup(email: string, password: string): Observable<UserResponse> {
@@ -33,11 +34,7 @@ export class AuthenticationService {
     };
     this.user.next(email);
     localStorage.setItem('userInfo', body.email);
-    return this.httpClient.post<UserResponse>(`${environment.user}/signUp`, body );
-  }
-
-  verifyTokenExpiration(token: string): Observable<boolean> {
-    return this.httpClient.post<boolean>(`${environment.token}/${getCookie('userId')}`, token);
+    return this.userService.createUser(body);
   }
 
   logout(): void {

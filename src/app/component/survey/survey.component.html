@@ -58,10 +58,9 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
-    <mat-form-field appearance="fill" class="input">
-      <mat-label>Leave a comment about the survey (optional)</mat-label>
-      <textarea matInput></textarea>
-    </mat-form-field>
+    <div class="captcha-container">
+      <re-captcha class="captcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
+    </div>
     <div class="submit-button">
       <button mat-raised-button color="accent" (click)="submitForms()">Submit</button>
     </div>
